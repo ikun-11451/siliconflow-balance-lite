@@ -8,7 +8,7 @@ export async function handleRequest(request) {
   const search = url.search;
 
   if (pathname === '/' || pathname === '/index.html') {
-    return new Response('Proxy is Running!  More Details: https://github.com/tech-shrimp/gemini-balance-lite', {
+    return new Response('SiliconFlow Proxy is Running!  More Details: https://github.com/ikun-11451/siliconflow-balance-lite', {
       status: 200,
       headers: { 'Content-Type': 'text/html' }
     });
@@ -23,17 +23,18 @@ export async function handleRequest(request) {
     return openai.fetch(request);
   }
 
-  const targetUrl = `https://generativelanguage.googleapis.com${pathname}${search}`;
+  const targetUrl = `https://api.siliconflow.cn/v1${pathname}${search}`;
 
   try {
     const headers = new Headers();
     for (const [key, value] of request.headers.entries()) {
-      if (key.trim().toLowerCase() === 'x-goog-api-key') {
-        const apiKeys = value.split(',').map(k => k.trim()).filter(k => k);
+      if (key.trim().toLowerCase() === 'authorization') {
+        const authValue = value.replace(/^Bearer\s+/i, '');
+        const apiKeys = authValue.split(',').map(k => k.trim()).filter(k => k);
         if (apiKeys.length > 0) {
           const selectedKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
-          console.log(`Gemini Selected API Key: ${selectedKey}`);
-          headers.set('x-goog-api-key', selectedKey);
+          console.log(`SiliconFlow Selected API Key: ${selectedKey}`);
+          headers.set('Authorization', `Bearer ${selectedKey}`);
         }
       } else {
         if (key.trim().toLowerCase()==='content-type')
@@ -43,7 +44,7 @@ export async function handleRequest(request) {
       }
     }
 
-    console.log('Request Sending to Gemini')
+    console.log('Request Sending to SiliconFlow')
     console.log('targetUrl:'+targetUrl)
     console.log(headers)
 
@@ -53,11 +54,11 @@ export async function handleRequest(request) {
       body: request.body
     });
 
-    console.log("Call Gemini Success")
+    console.log("Call SiliconFlow Success")
 
     const responseHeaders = new Headers(response.headers);
 
-    console.log('Header from Gemini:')
+    console.log('Header from SiliconFlow:')
     console.log(responseHeaders)
 
     responseHeaders.delete('transfer-encoding');

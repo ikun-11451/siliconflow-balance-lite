@@ -1,12 +1,12 @@
 async function verifyKey(key, controller) {
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+  const url = 'https://api.siliconflow.cn/v1/chat/completions';
   const body = {
-    "contents": [{
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "messages": [{
       "role": "user",
-      "parts": [{
-        "text": "Hello"
-      }]
-    }]
+      "content": "Hello"
+    }],
+    "max_tokens": 10
   };
   let result;
   try {
@@ -14,7 +14,7 @@ async function verifyKey(key, controller) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-goog-api-key': key,
+        'Authorization': `Bearer ${key}`,
       },
       body: JSON.stringify(body),
     });
@@ -23,7 +23,7 @@ async function verifyKey(key, controller) {
       result = { key: `${key.slice(0, 7)}......${key.slice(-7)}`, status: 'GOOD' };
     } else {
       const errorData = await response.json().catch(() => ({ error: { message: 'Unknown error' } }));
-      result = { key: `${key.slice(0, 7)}......${key.slice(-7)}`, status: 'BAD', error: errorData.error.message };
+      result = { key: `${key.slice(0, 7)}......${key.slice(-7)}`, status: 'BAD', error: errorData.error?.message || errorData.message || 'Unknown error' };
     }
   } catch (e) {
     result = { key: `${key.slice(0, 7)}......${key.slice(-7)}`, status: 'ERROR', error: e.message };
@@ -33,14 +33,15 @@ async function verifyKey(key, controller) {
 
 export async function handleVerification(request) {
   try {
-    const authHeader = request.headers.get('x-goog-api-key');
+    const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
     if (!authHeader) {
-      return new Response(JSON.stringify({ error: 'Missing x-goog-api-key header.' }), {
+      return new Response(JSON.stringify({ error: 'Missing Authorization header.' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
     }
-    const keys = authHeader.split(',').map(k => k.trim()).filter(Boolean);
+    const authValue = authHeader.replace(/^Bearer\s+/i, '');
+    const keys = authValue.split(',').map(k => k.trim()).filter(Boolean);
 
     const stream = new ReadableStream({
       async start(controller) {
