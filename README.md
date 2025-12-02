@@ -2,7 +2,9 @@
 # 硅基流动 API 代理和负载均衡无服务器轻量版（边缘函数）
 
 ### 基于：技术爬爬虾的 Gemini Balance Lite 项目修改
-[B站](https://space.bilibili.com/316183842)，[Youtube](https://www.youtube.com/@Tech_Shrimp)
+[原项目作者B站](https://space.bilibili.com/316183842)，[原项目作者Youtube](https://www.youtube.com/@Tech_Shrimp)
+<br>
+[本项目作者B站](https://space.bilibili.com/1111545508)
 
 ## 项目简介
 
@@ -19,7 +21,7 @@
 
     ![image](/docs/images/5.png)
     </details>
-3. 去[硅基流动](https://cloud.siliconflow.cn)注册并申请 API Key
+3. 去[硅基流动](https://cloud.siliconflow.cn/i/0ww8zcOn)注册并申请 API Key
 <br>将API Key与自定义的域名填入AI客户端即可使用，如果有多个API Key用逗号分隔
     <details>
     <summary>以Cherry Studio为例：</summary>
@@ -45,7 +47,7 @@
 6. 点击 <b>Deploy Project</b>
 7. 部署成功后获得域名
 8. 国内使用需要配置自定义域名
-9. 去[硅基流动](https://cloud.siliconflow.cn)注册并申请 API Key
+9. 去[硅基流动](https://cloud.siliconflow.cn/i/0ww8zcOn)注册并申请 API Key
 10. 将API Key与分配的域名填入AI客户端即可使用，如果有多个API Key用逗号分隔
 
 <details>
@@ -82,7 +84,7 @@
 ![image](/docs/images/1.png)
 </details>
 
-去[硅基流动](https://cloud.siliconflow.cn)注册并申请 API Key
+去[硅基流动](https://cloud.siliconflow.cn/i/0ww8zcOn)注册并申请 API Key
 <br>将API Key与分配的域名填入AI客户端即可使用，如果有多个API Key用逗号分隔
 
 <details>
@@ -94,9 +96,10 @@
 
 
 ## 打赏
-#### 帮忙点点关注点点赞，谢谢啦~
-B站：[https://space.bilibili.com/316183842](https://space.bilibili.com/316183842)<br>
-Youtube: [https://www.youtube.com/@Tech_Shrimp](https://www.youtube.com/@Tech_Shrimp)
+#### 帮忙点点关注点点赞喵，谢谢喵~
+原作者 B站：[https://space.bilibili.com/316183842](https://space.bilibili.com/316183842)<br>
+原作者 Youtube: [https://www.youtube.com/@Tech_Shrimp](https://www.youtube.com/@Tech_Shrimp)<br>
+本项目作者 B站：[https://space.bilibili.com/1111545508](https://space.bilibili.com/1111545508)
 
 
 ## 本地调试
