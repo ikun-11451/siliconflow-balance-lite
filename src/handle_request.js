@@ -68,10 +68,10 @@ export async function handleRequest(request) {
 <body>
     <div class="container">
         <img src="${imageBase64}" alt="Cloudflare">
-        <h1>SiliconFlow Proxy is Running!</h1>
+        <h1>SiliconFlow中转正在运行中！</h1>
         <p>该siliconflow中转由cloudflare驱动</p>
         <div class="footer">
-            More Details: <a href="https://github.com/ikun-11451/siliconflow-balance-lite" target="_blank">GitHub</a>
+            作者GitHub: <a href="https://github.com/ikun-11451/siliconflow-balance-lite" target="_blank">GitHub</a>
         </div>
     </div>
 </body>
