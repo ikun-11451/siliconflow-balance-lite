@@ -1,5 +1,6 @@
 import { handleVerification } from './verify_keys.js';
 import openai from './openai.mjs';
+import { imageBase64 } from './image.js';
 
 export async function handleRequest(request) {
 
@@ -8,9 +9,77 @@ export async function handleRequest(request) {
   const search = url.search;
 
   if (pathname === '/' || pathname === '/index.html') {
-    return new Response('SiliconFlow Proxy is Running!  More Details: https://github.com/ikun-11451/siliconflow-balance-lite', {
+    const html = `
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiliconFlow Proxy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="${imageBase64}" alt="Cloudflare">
+        <h1>SiliconFlow Proxy is Running!</h1>
+        <p>该siliconflow中转由cloudflare驱动</p>
+        <div class="footer">
+            More Details: <a href="https://github.com/ikun-11451/siliconflow-balance-lite" target="_blank">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
+    `;
+    return new Response(html, {
       status: 200,
-      headers: { 'Content-Type': 'text/html' }
+      headers: { 'Content-Type': 'text/html; charset=utf-8' }
     });
   }
 
